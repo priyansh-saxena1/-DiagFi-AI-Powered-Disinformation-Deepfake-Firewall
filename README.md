@@ -1,3 +1,13 @@
+---
+title: Diagfi Mcp
+emoji: 🦀
+colorFrom: blue
+colorTo: purple
+sdk: docker
+pinned: false
+---
+
+Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
 # DiagFi - AI-Powered Disinformation & Deepfake Firewall
 
 ## Problem Statement
