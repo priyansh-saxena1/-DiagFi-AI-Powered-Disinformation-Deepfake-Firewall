@@ -2,7 +2,7 @@ import asyncio
 from contextlib import asynccontextmanager
 from typing import Any, Callable, Dict, List
 
-from fastapi import APIRouter, FastAPI, Request
+from fastapi import APIRouter, Depends, FastAPI, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
@@ -87,7 +87,19 @@ async def mcp_manifest():
 
 # --- API Router ---
 
-api_router = APIRouter(prefix="/tools")
+# --- Dependencies ---
+async def count_mcp_call(request: Request):
+    """A dependency that counts tool calls in Redis."""
+    # e.g., /tools/detect-media-fake -> detect-media-fake
+    tool_name = request.url.path.split("/")[-1]
+    async with cache_service.get_client() as client:
+        await client.hincrby("mcp_call_counts", tool_name, 1)
+
+
+# --- API Router ---
+
+api_router = APIRouter(prefix="/tools", dependencies=[Depends(count_mcp_call)])
+
 
 # A helper to reduce boilerplate
 def add_tool_endpoint(path: str, func: Callable[..., Any]):
@@ -108,7 +120,16 @@ add_tool_endpoint("/play-quiz", play_quiz)
 app.include_router(api_router)
 
 
-@app.get("/", tags=["Health Check"])
+@app.get("/metrics", tags=["MCP"])
+async def get_mcp_metrics() -> Dict[str, int]:
+    """Returns the call counts for each MCP tool."""
+    async with cache_service.get_client() as client:
+        counts = await client.hgetall("mcp_call_counts")
+        # hgetall returns strings, so we need to convert them to int
+        return {k: int(v) for k, v in counts.items()}
+
+
+@app.get("/health", tags=["Health Check"])
 async def health_check():
     """A simple health check endpoint."""
     return {"status": "ok"}
