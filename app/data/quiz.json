@@ -1,0 +1,35 @@
+[
+  {
+    "question": "Which of these is a common sign of a deepfake video?",
+    "options": [
+      "Unnatural eye movement or lack of blinking.",
+      "Perfectly smooth skin with no blemishes.",
+      "Audio that is perfectly synced with lip movements.",
+      "Very high resolution and clear details."
+    ],
+    "answer": "Unnatural eye movement or lack of blinking.",
+    "explanation": "Deepfake models often struggle to replicate natural blinking, leading to a tell-tale sign of manipulation."
+  },
+  {
+    "question": "What is 'information laundering'?",
+    "options": [
+      "Deleting your browser history.",
+      "Using a VPN to hide your location.",
+      "Making disinformation appear legitimate by cycling it through various sources.",
+      "Encrypting your emails."
+    ],
+    "answer": "Making disinformation appear legitimate by cycling it through various sources.",
+    "explanation": "This process is used to obscure the original source of false information and give it an air of credibility."
+  },
+  {
+    "question": "If a news story seems designed to make you very angry, what should be your first step?",
+    "options": [
+      "Share it immediately with your friends.",
+      "Post a comment expressing your outrage.",
+      "Pause and verify the information with a trusted source.",
+      "Ignore it completely."
+    ],
+    "answer": "Pause and verify the information with a trusted source.",
+    "explanation": "Emotional manipulation is a key tactic of disinformation. Taking a moment to think and verify can prevent its spread."
+  }
+]

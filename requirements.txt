@@ -1,0 +1,23 @@
+# Core Application
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+redis
+httpx
+aiostream
+python-dotenv
+tenacity
+
+# Testing
+pytest
+pytest-asyncio
+pytest-mock
+pytest-cov
+pytest-dotenv
+
+# Linting & Formatting
+black
+ruff
+mypy
+types-redis
